@@ -1,19 +1,26 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <capcalera></capcalera>
+    <peu></peu>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import capcalera from '@/components/Capcalera.vue';
+import peu from '@/components/Peu.vue';
+
+
 
 export default {
   name: 'app',
+
   components: {
-    HelloWorld
+    capcalera,
+    peu
   }
 }
+
+
 </script>
 
 <style>
@@ -25,4 +32,10 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+ul{
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+ }
 </style>
