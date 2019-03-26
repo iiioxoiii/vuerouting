@@ -17,7 +17,6 @@
 
 
 <script>
-import Capcalera from '@/components/Capcalera.vue'
 
 export default {
   name: 'clima-city',

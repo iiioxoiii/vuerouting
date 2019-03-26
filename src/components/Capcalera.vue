@@ -17,7 +17,8 @@
               <div class="navbar-dropdown">
 
                 <router-link v-for="parametre in parametres" :to="parametre.ruta">
-                    <a v-onclick="onClickCiutat" class="navbar-item">
+                  <!-- Passar les props a seguent component-->
+                    <a v-on:click="onClickCiutat" class="navbar-item">
                     {{parametre.nom}}
                     </a>
                 </router-link>
@@ -36,7 +37,7 @@
     </div>
 
     <div v-show="compselect">
-      <seleccio></seleccio>
+      <seleccio :nom="nomPare" :clima="climaPare" :show="showPare"></seleccio>
     </div>
 
     <div v-show="compclima">
@@ -69,6 +70,7 @@ export default {
       concertcity
     },
 
+
     data: function(){
       return{
         parametres: [
@@ -87,7 +89,13 @@ export default {
         compini: false,
         compselect: false,
         compclima: false,
-        compconcert: false
+        compconcert: false,
+
+        rutaPare: null,
+        nomPare: 'nombresito',
+        climaPare: 'tempestes',
+        showPare: 'concertillo',
+
       }
     },
 
@@ -96,23 +104,20 @@ export default {
     },
 
 
-
-
     methods: {
       onClickCiutat() {
+        alert('Hello ' + '!'),
         this.compini = false,
         this.compselect = true,
         this.compclima = false,
         this.compconcert = false
 
       }
+    }
 }
-
-
-
-
-  }
-
 </script>
+
+
+
 <style lang="css" scoped>
 </style>
