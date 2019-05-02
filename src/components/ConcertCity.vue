@@ -11,7 +11,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 
@@ -43,7 +42,6 @@ export default {
     created(){
     this.actualitza();
   },
-
 
     actualitza() {
       this.url = ("https://api.songkick.com/api/3.0/metro_areas/" + this.idCiutat + "&appid=2e84ec51d8f3a61dcc749f18638d5b30&lang=ca")

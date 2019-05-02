@@ -16,12 +16,19 @@
               </a>
               <div class="navbar-dropdown">
 
-                <router-link v-for="parametre in parametres" :to="parametre.ruta">
+                <!--Menu de ciutats-->
+                <router-link v-for="parametre in parametres" :to="parametre.ruta" :nomPare="parametre.nom" :climaPare="parametre.clima" :showPare="parametre.show">
+
                   <!-- Passar les props a seguent component-->
-                    <a v-on:click="onClickCiutat" class="navbar-item">
-                    {{parametre.nom}}
+                    <a v-on:click="onClickCiutat(parametre.ruta, parametre.nom , parametre.clima, parametre.show)" class="navbar-item">
+                      <!--Pinta el nom de la ciutat-->
+                      {{parametre.nom}}
+                      <!--Guarda el id de la ciutat triada per la generacio de tota la logica de la pagina-->
                     </a>
+
                 </router-link>
+
+
 
               </div>
             </div>
@@ -29,24 +36,29 @@
         </div>
       </nav>
     </div>
-    <div>
+    <div class="container">
 
-    </div>
+    <!--Component inicial-->
     <div v-show="compini">
+      <!--Pasar parametres al component-->
       <contingut></contingut>
     </div>
 
+    <!--Component de selecció intermig-->
     <div v-show="compselect">
       <seleccio :nom="nomPare" :clima="climaPare" :show="showPare"></seleccio>
     </div>
 
+    <!--Component de clima-->
     <div v-show="compclima">
-      <climacity></climacity>
+      <climacity :nomCiutat="nomPare" :clima="climaPare"></climacity>
     </div>
 
+    <!--Component de concert-->
     <div v-show="compconcert">
-      <concertcity></concertcity>
+      <concertcity :nomCiutat="nomPare" :clima="climaPare"></concertcity>
     </div>
+  </div>
 
   </div>
 </template>
@@ -74,7 +86,7 @@ export default {
     data: function(){
       return{
         parametres: [
-            {id:'ciutat-1', ruta:'/ciutat/Barcelona/', nom:'Barcelona', clima: 'barcelona', show: '28714'},
+            {id:'ciutat-1', ruta:'/ciutat/Barcelona', nom:'Barcelona', clima: 'barcelona', show: '28714'},
             {id:'ciutat-2', ruta:'/ciutat/Berlin', nom:'Berlin', clima: 'berlin', show: '28443'},
             {id:'ciutat-3', ruta:'/ciutat/Madrid', nom:'Madrid', clima: 'madrid', show: '28755'},
             {id:'ciutat-4', ruta:'/ciutat/Paris', nom:'Paris', clima: 'paris', show: '28909'},
@@ -92,7 +104,7 @@ export default {
         compconcert: false,
 
         rutaPare: null,
-        nomPare: 'nombresito',
+        nomPare: null,
         climaPare: 'tempestes',
         showPare: 'concertillo',
 
@@ -100,17 +112,22 @@ export default {
     },
 
     created() {
-            this.compini = true
+      this.compini = true
     },
 
 
     methods: {
-      onClickCiutat() {
-        alert('Hello ' + '!'),
+      //Mètode de pass a props
+      onClickCiutat(a, b, c, d) {
         this.compini = false,
         this.compselect = true,
         this.compclima = false,
-        this.compconcert = false
+        this.compconcert = false,
+
+        this.rutaPare = a,
+        this.nomPare = b,
+        this.climaPare = c,
+        this.showPare = d
 
       }
     }

@@ -19,8 +19,9 @@
 <script>
 
 export default {
-  name: 'clima-city',
 
+  name: 'clima-city',
+  
   props: ['idClima'],
 
 

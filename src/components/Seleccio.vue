@@ -1,33 +1,52 @@
 <template>
-  <div>
-    <h1>Clima</h1>
-    <p>Link clima de la ciutat nom</p>
-    <h1>Concerts</h1>
-    <p>Link show de la ciutat nom</p>
-    <p>Aquest component és el selector</p>
+      <div class = "columns is-mobile is-centered">
 
-    <h1>{{nom}}</h1>
-    <h2>{{clima}}</h2>
-    <h3>{{show}}</h3>
-    <li class="nav-item">
-      <router-link class="nav-link" to="/blog">Link per triar el Clima de la ciutat</router-link>
-    </li>
-    <li class="nav-item">
-      <router-link class="nav-link" to="/services">Exdeveniment</router-link>
-    </li>
+    <div v-on:click="onClickClima">
+      <div class = "column is-half is-offset-one-quarter" >
+        <h2 class="title is-2">
+          <router-link :to="{path: this.nom + '/clima'}">Clima de {{nom}}</router-link>
+        </h2>
 
+    </div>
+    </div>
+
+    <div v-on:click="onClickEsdeveniment">
+      <div class="column is-half is-offset-one-quarter">
+          <h2 class="title is-2">
+            <router-link  :to="{ path: this.nom + '/esdeveniments'}">Esdeveniments de {{nom}}</router-link>
+          </h2>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
+
   name:'seleccio',
 
   props: [
     'nom',
     'clima',
     'show'
-    ]
+  ],
+
+  data: function() {
+      return{
+
+      }
+  },
+
+  methods: {
+      onClickClima(){
+        alert('nom: ' + this.nom + '\n' + 'clima: ' + this.clima + '\n' + 'show: ' + this.show);
+
+      },
+      onClickEsdeveniment(){
+        alert('BBBBBB');
+        alert('carrega component Esdeveniment')
+      }
+    }
 
 }
 </script>
@@ -38,4 +57,5 @@ export default {
 
 
 <style lang="css" scoped>
+
 </style>
